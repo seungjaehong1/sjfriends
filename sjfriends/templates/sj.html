@@ -1,0 +1,81 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display SQL Database in HTML</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 20px;
+        }
+        .post {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .post-thumbnail {
+            float: left;
+            margin-right: 15px;
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">승재 사진첩</h1>
+        {% for post in posts_sj %}
+        <div class="card post">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                      <img src="{{ url_for('static', filename='uploads/' ~ post.file) }}" class="post-thumbnail" alt="Thumbnail">
+                    </div>
+                    <div class="col-md-9">
+                        <h2 class="card-title">{{ post.title }}</h2>
+                        <p class="card-text">{{ post.description }}</p>
+                        <p class="card-text">Posted By: {{ post.author.username }}</p>
+                        <p class="card-text">Posted On: {{ post.date }}</p>
+                    </div>
+                    <div class="col-md-3">
+                        {% if post.author.username == current_user.username %}
+                        <a href="{{ url_for('view_post_sj', post_id=post.id) }}" class="btn btn-primary btn-sm">View</a>
+                        <a href="{{ url_for('edit_post_sj', post_id=post.id) }}" class="btn btn-info btn-sm">Edit</a>
+                        {% else %}
+                        <a href="{{ url_for('view_post_sj', post_id=post.id) }}" class="btn btn-primary btn-sm">View</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <div>
+            <span>Page {{ posts_sj.page }} of {{ posts_sj.pages }}</span>
+            {% if posts_sj.has_prev %}
+                <a href="{{ url_for('sj', page=posts_sj.prev_num) }}" class="btn btn-primary mt-4">Previous</a>
+            {% endif %}
+            {% if posts_sj.has_next %}
+                <a href="{{ url_for('sj', page=posts_sj.next_num) }}" class="btn btn-primary mt-4">Next</a>
+            {% endif %}            
+        </div>
+        
+        <!-- Upload Button -->
+        <a href="{{ url_for('sj_new_post') }}" class="btn btn-primary mt-4">Upload New Post</a>
+        <a href="{{ url_for('home') }}" class="btn btn-primary mt-4">Back To Main</a>
+    </div>
+    
+    <!-- Bootstrap JS and dependencies (optional for some features) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

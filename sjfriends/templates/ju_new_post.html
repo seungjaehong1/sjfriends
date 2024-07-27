@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Photo</title>
+    <!-- Bootstrap or other CSS frameworks if desired -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Photo</h1>
+        <form action="{{ url_for('ju_new_post') }}" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" class="form-control" id="description" name="description" required>
+            </div>
+            <div class="form-group">
+                <label for="file">Choose Photo</label>
+                <input type="file" class="form-control-file" id="file" name="file" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+    </div>

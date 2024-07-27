@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+
+    <title>승재 & 프렌즈</title>
+
+    <style>
+        .wrap {
+            width: 900px;
+            margin: 10px auto;
+        }
+        .card-img-top{
+            width: 284px;
+            height: 149px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrap">
+        <div class="jumbotron">
+            <h1 class="display-4">웰컴 투 승재 앤 프렌즈!!!</h1>
+            <p class="lead">The purpose of this website is to document the lives of 승재 and his dear friends.</p>
+            <hr class="my-4">
+            <p>Hope you enjoy! (회원가입을 원하는 자는 홍승재에게 문의해라!)</p>
+            <p class="lead">
+                {% if current_user.is_authenticated %}
+                <a class="btn btn-primary btn-lg" onclick="location.href='/logout';" role="button">로그아웃</a>
+                {% else %}
+                <a class="btn btn-primary btn-lg" onclick="location.href='/login';" role="button">로그인</a>
+                {% endif %}
+            </p>
+        </div>
+        <form method='POST'>
+        <div class="card-columns">
+            <div class="card">
+                <img class="card-img-top"
+                    src="../static/hs_profile.jpeg"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <a onclick="location.href='/hs';" class="card-title">
+                    <h5 class="card-title">현섭 사진첩</h5>
+                    <p class="card-text">
+                        녀석은 시청과 판교를 계절에 따라 이동하며 서식한다.
+                    </p>
+                    </a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top"
+                    src="../static/sj_profile.jpg"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <a onclick="location.href='/sj';" class="card-title">
+                    <h5 class="card-title">승재 사진첩</h5>
+                    <p class="card-text">
+                        취업난에 부딪혀 코딩을 배우고 있다. 취미로 미국의 흑인문화를 연구한다. 
+                    </p>
+                    </a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top"
+                    src="../static/ju_profile.jpeg"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <a onclick="location.href='/ju';" class="card-title">
+                    <h5 class="card-title">정주 사진첩</h5>
+                    <p class="card-text">
+                        작업반장님이시다. 
+                    </p>
+                    </a>
+                </div>
+            </div>
+        </form>    
+        </div>
+    </div>
+</body>
+
+</html>

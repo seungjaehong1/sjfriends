@@ -1,0 +1,51 @@
+<!-- templates/view_post.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }}</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 20px;
+        }
+        .post {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .post-thumbnail {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card post">
+            <div class="card-body">
+                <h2 class="card-title">{{ post.title }}</h2>
+                <p class="card-text">{{ post.description }}</p>
+                <p class="card-text">Posted By: {{ post.author.username }}</p>
+                <p class="card-text">Posted On: {{ post.date }}</p>
+                <img src="{{ url_for('static', filename='uploads/' ~ post.file) }}" class="post-thumbnail" alt="Thumbnail">
+            </div>
+        </div>
+        
+        <!-- Back Button -->
+        <a href="{{ url_for('ju') }}" class="btn btn-primary mt-4">Back to Posts</a>
+    </div>
+    
+    <!-- Bootstrap JS and dependencies (optional for some features) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
